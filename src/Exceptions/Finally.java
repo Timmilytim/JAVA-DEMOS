@@ -13,7 +13,7 @@ public class Finally {
             System.out.println(div);
 
         }catch (ArrayIndexOutOfBoundsException e){
-            System.out.println("Invalid Array Elements");
+            System.out.println("Caught Exception: " + e.getMessage() );
         }catch (ArithmeticException d){
             System.out.println("Arithmetic Error in your code");
         }
