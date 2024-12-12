@@ -1,9 +1,6 @@
 package Database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DbPractice{
     public static void main(String[] args) {
@@ -20,9 +17,31 @@ public class DbPractice{
             System.out.println("Table created successfully...");
 
 //            HOW TO INSERT RECORDS INTO THE TABLE
-            String insert = "INSERT INTO users VALUES(2,'Timmy', 'timmy@gmail.com', '4231')";
-            state.execute(insert);
-            System.out.println("Record inserted..");
+//            String insert = "INSERT INTO users VALUES(3,'Dammy', 'dammy@gmail.com', '4531')";
+//            state.execute(insert);
+//            System.out.println("Record inserted..");
+
+//            HOW TO READ THE RECORDS FROM THE DATABASE
+            String getResult = "SELECT * FROM users";
+            state.execute(getResult);
+
+            ResultSet resultSet = state.getResultSet();
+            while (resultSet.next()){
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String pass = resultSet.getString("password");
+                System.out.println(name +", "+ email+ ", "+ pass);
+            }
+
+//            HOW TO UPDATE RECORDS ON THE TABLE
+            String update = "UPDATE users SET name = 'Faith' WHERE id = 3";
+            state.execute(update);
+            System.out.println("Record updated successfully...");
+
+//            HOW TO DELETE A RECORD ON THE TABLE
+            String delete = "DELETE FROM users WHERE id = 3";
+            state.execute(delete);
+            System.out.println("Record deleted...");
 
             state.close();
         }catch (SQLException e){
